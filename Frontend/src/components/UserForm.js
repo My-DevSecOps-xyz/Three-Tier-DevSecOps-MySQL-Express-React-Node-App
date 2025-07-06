@@ -5,10 +5,8 @@ function UserForm({ user, onSubmit, onCancel }) {
 
   useEffect(() => {
     if (user) {
-      // Pre-fill name and email for editing, password left blank
       setForm({ name: user.name, email: user.email, password: '' });
     } else {
-      // Reset form for creation
       setForm({ name: '', email: '', password: '' });
     }
   }, [user]);
@@ -22,63 +20,72 @@ function UserForm({ user, onSubmit, onCancel }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const payload = {
       name: form.name,
       email: form.email,
     };
-
-    // Only include password if adding
     if (!user) {
       payload.password = form.password;
     }
-
     onSubmit(payload);
-
-    // Reset form after submission if creating
     if (!user) {
       setForm({ name: '', email: '', password: '' });
     }
   };
 
   return (
-    <form className="user-form" onSubmit={handleSubmit}>
-      <input
-        className="form-field"
-        type="text"
-        name="name"
-        placeholder="Name"
-        value={form.name}
-        onChange={handleChange}
-        required
-      />
-      <input
-        className="form-field"
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={form.email}
-        onChange={handleChange}
-        required
-      />
-      {!user && (
+    <form className="new-user-form" onSubmit={handleSubmit}>
+      <div className="new-input-group">
+        <label htmlFor="name">Name</label>
         <input
-          className="form-field"
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
+          id="name"
+          className="new-form-field"
+          type="text"
+          name="name"
+          placeholder="Enter name"
+          value={form.name}
           onChange={handleChange}
           required
         />
+      </div>
+      <div className="new-input-group">
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          className="new-form-field"
+          type="email"
+          name="email"
+          placeholder="Enter email"
+          value={form.email}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      {!user && (
+        <div className="new-input-group">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            className="new-form-field"
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
       )}
-      <div className="button-group">
-        <button type="submit">{user ? 'Update' : 'Add Viewer User'}</button>
-        {user && <button type="button" onClick={onCancel}>Cancel</button>}
+      <div className="new-button-group">
+        <button type="submit" className="new-form-button">{user ? 'Update' : 'Add Viewer User'}</button>
+        {user && <button type="button" className="new-cancel-button" onClick={onCancel}>Cancel</button>}
       </div>
     </form>
   );
 }
 
 export default UserForm;
+
+
+
 
