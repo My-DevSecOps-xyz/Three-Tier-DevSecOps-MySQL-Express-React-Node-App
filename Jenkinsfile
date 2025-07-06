@@ -47,7 +47,7 @@ pipeline {
                      echo 'Quality Gate finally passed!'
                 }
                 
-            }
+            }////////
         }
         stage('Trivy FSScan') {
             steps {
