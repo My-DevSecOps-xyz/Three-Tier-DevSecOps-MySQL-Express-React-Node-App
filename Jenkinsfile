@@ -27,7 +27,7 @@ pipeline {
         }
         stage('GitLeak Scan') {
             steps {
-                sh 'gitleaks detect --source ./Frontend --exit-code 1'   
+                sh 'gitleaks detect --source ./Backend --exit-code 1'   
                 sh 'gitleaks detect --source ./Frontend --exit-code 1'   
                 
             }
