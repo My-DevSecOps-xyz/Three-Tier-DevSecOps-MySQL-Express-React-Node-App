@@ -27,7 +27,7 @@ pipeline {
         }
         stage('GitLeak Scan') {
             steps {
-                sh 'gitleaks detect --source ./Frontend --exit-code 1'   
+                sh 'gitleaks detect --source ./Backend --exit-code 1'   
                 sh 'gitleaks detect --source ./Frontend --exit-code 1'   
                 
             }
@@ -80,7 +80,7 @@ pipeline {
                             sh 'docker build -t princewillopah/frontend:latest .'
                             sh 'trivy image --format table -o frontend-image-report.html princewillopah/frontend:latest '
                             sh 'docker push princewillopah/frontend:latest'
-                        }
+                        }//
                     }
                 }
             }
