@@ -23,7 +23,7 @@ const connectWithRetry = () => {
       setTimeout(connectWithRetry, 5000); // Retry after 5 seconds
       return;
     }
-    console.log('Backend connected to MySQL successfully!');
+    console.log('Backend connected to MySQL successfully!'); //ytyytyyytytytytytytyytytyt
   });
 };
 
