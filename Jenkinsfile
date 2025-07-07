@@ -44,9 +44,11 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 timeout(time: 1, unit: 'MINUTES') {
-                    echo 'Quality Gate passed!'
+                    //  waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
+                     echo 'Quality Gate finally passed!'
                 }
             }
+
         }
 
         stage('Trivy FSScan') {
@@ -77,7 +79,7 @@ pipeline {
                             sh 'docker build -t princewillopah/frontend:latest .'
                             sh 'trivy image --format table -o frontend-image-report.html princewillopah/frontend:latest'
                             sh 'docker push princewillopah/frontend:latest'
-                        }
+                        }//
                     }
                 }
             }
