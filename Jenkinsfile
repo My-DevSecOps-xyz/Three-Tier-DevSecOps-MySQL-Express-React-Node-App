@@ -86,8 +86,8 @@ pipeline {
         stage('Compose Pull & Deploy') {
             steps {
                 script {
-                    // Clean up existing containers
-                    sh 'docker-compose down -v --remove-orphans || true'
+                    // Clean up existing containers- updated
+                    sh 'docker-compose down -v --remove-orphans || true' 
 
                     // Pull latest images from Docker Hub
                     sh 'docker-compose pull'
