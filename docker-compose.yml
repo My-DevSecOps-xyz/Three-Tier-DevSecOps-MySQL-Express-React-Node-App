@@ -1,10 +1,12 @@
-version: '3.8'
+
 
 services:
   mysql:
     image: mysql:8
     container_name: mysql
     restart: always
+    networks:
+      - mynetwork
     environment:
       MYSQL_ROOT_PASSWORD: My2ndStrongRootPassword!
       MYSQL_DATABASE: crud_app
@@ -13,11 +15,18 @@ services:
       - ./mysql-init:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pMy2ndStrongRootPassword!"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   backend:
-    build: ./Backend
-    restart: always
+    image: princewillopah/backend:latest
     container_name: backend-api
+    restart: always
+    networks:
+      - mynetwork
     environment:
       DB_HOST: mysql
       DB_USER: root
@@ -26,13 +35,17 @@ services:
       JWT_SECRET: devopsShackSuperSecretKey
       RESET_ADMIN_PASS: 'true'
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     ports:
       - "4000:4000"
 
   frontend:
-    build: ./Frontend
+    image: princewillopah/frontend:latest
     container_name: frontend-react
+    restart: always
+    networks:
+      - mynetwork
     ports:
       - "3000:80"
     depends_on:
@@ -40,3 +53,125 @@ services:
 
 volumes:
   mysql-data:
+
+networks:
+  mynetwork:
+    driver: bridge
+
+
+
+
+
+
+
+
+
+
+
+
+
+# services:
+#   mysql:
+#     image: mysql:8
+#     container_name: mysql
+#     restart: always
+#     networks:
+#       - mynetwork
+#     environment:
+#       MYSQL_ROOT_PASSWORD: My2ndStrongRootPassword!
+#       MYSQL_DATABASE: crud_app
+#     volumes:
+#       - mysql-data:/var/lib/mysql
+#       - ./mysql-init:/docker-entrypoint-initdb.d
+#     ports:
+#       - "3306:3306"
+#     healthcheck:
+#       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pMy2ndStrongRootPassword!"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 10
+
+#   backend:
+#     image: princewillopah/backend:latest
+#     container_name: backend-api
+#     restart: always
+#     networks:
+#       - mynetwork
+#     environment:
+#       DB_HOST: mysql
+#       DB_USER: root
+#       DB_PASSWORD: My2ndStrongRootPassword!
+#       DB_NAME: crud_app
+#       JWT_SECRET: devopsShackSuperSecretKey
+#       RESET_ADMIN_PASS: 'true'
+#     depends_on:
+#       mysql:
+#         condition: service_healthy
+#     ports:
+#       - "4000:4000"
+
+#   frontend:
+#     image: princewillopah/frontend:latest
+#     container_name: frontend-react
+#     restart: always
+#     networks:
+#       - mynetwork
+#     ports:
+#       - "3000:80"
+#     depends_on:
+#       - backend
+
+# volumes:
+#   mysql-data:
+
+# networks:
+#   mynetwork:
+# Uncomment the following lines if you want to use Docker Compose with a custom MySQL image and a custom backend and frontend build.
+# Uncomment the following lines if you want to use Docker Compose with a custom MySQL image and
+
+
+
+
+
+
+
+# services:
+#   mysql:
+#     image: mysql:8
+#     container_name: mysql
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: My2ndStrongRootPassword!
+#       MYSQL_DATABASE: crud_app
+#     volumes:
+#       - mysql-data:/var/lib/mysql
+#       - ./mysql-init:/docker-entrypoint-initdb.d
+#     ports:
+#       - "3306:3306"
+
+#   backend:
+#     build: ./Backend
+#     restart: always
+#     container_name: backend-api
+#     environment:
+#       DB_HOST: mysql
+#       DB_USER: root
+#       DB_PASSWORD: My2ndStrongRootPassword!
+#       DB_NAME: crud_app
+#       JWT_SECRET: devopsShackSuperSecretKey
+#       RESET_ADMIN_PASS: 'true'
+#     depends_on:
+#       - mysql
+#     ports:
+#       - "4000:4000"
+
+#   frontend:
+#     build: ./Frontend
+#     container_name: frontend-react
+#     ports:
+#       - "3000:80"
+#     depends_on:
+#       - backend
+
+# volumes:
+#   mysql-data:
