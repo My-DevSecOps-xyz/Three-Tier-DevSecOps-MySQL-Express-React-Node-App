@@ -13,5 +13,5 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 
-INSERT INTO users (name, email, password, role) 
-VALUES ('Admin User', 'popo@popo.com', '$2a$10$qz8klo31TOUGIJv78sC5OegkdkOq/SqHhSMzYNUKn2FTm7WHwPfF.', 'admin');
+-- INSERT INTO users (name, email, password, role) 
+-- VALUES ('Admin User', 'popo@popo.com', '$2a$10$qz8klo31TOUGIJv78sC5OegkdkOq/SqHhSMzYNUKn2FTm7WHwPfF.', 'admin');
