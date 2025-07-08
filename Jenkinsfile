@@ -4,6 +4,11 @@ pipeline {
         SCANNER_HOME = tool 'sonar-scanner'
     }
     stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
         stage('Git Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/My-DevSecOps-xyz/Three-Tier-DevSecOps-MySQL-Express-React-Node-App.git'
