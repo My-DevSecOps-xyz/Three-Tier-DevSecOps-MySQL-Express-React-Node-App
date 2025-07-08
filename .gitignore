@@ -45,8 +45,8 @@
 
 # Ignore database dump files
 # **/*.sql
-**/*.sqlite
-**/*.db
+# **/*.sqlite
+# **/*.db
 
 # If you don't want to version control Dockerfiles and docker-compose files, uncomment below:
 # **/Dockerfile
