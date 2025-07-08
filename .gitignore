@@ -44,7 +44,7 @@
 **/.cache/
 
 # Ignore database dump files
-**/*.sql
+# **/*.sql
 **/*.sqlite
 **/*.db
 
