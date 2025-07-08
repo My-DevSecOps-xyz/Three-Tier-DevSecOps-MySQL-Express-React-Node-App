@@ -1,5 +1,3 @@
-
-
 services:
   mysql:
     image: mysql:8
@@ -57,6 +55,136 @@ volumes:
 networks:
   mynetwork:
     driver: bridge
+
+
+
+# services:
+#   mysql:
+#     image: mysql:8
+#     container_name: mysql
+#     restart: always
+#     networks:
+#       - mynetwork
+#     environment:
+#       MYSQL_ROOT_PASSWORD: My2ndStrongRootPassword!
+#       MYSQL_DATABASE: crud_app
+#     volumes:
+#       - mysql-data:/var/lib/mysql
+#       - ./mysql-init:/docker-entrypoint-initdb.d
+#     ports:
+#       - "3306:3306"
+#     healthcheck:
+#       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pMy2ndStrongRootPassword!"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 10
+
+#   backend:
+#     image: princewillopah/backend:latest
+#     container_name: backend-api
+#     restart: always
+#     networks:
+#       - mynetwork
+#     environment:
+#       DB_HOST: mysql
+#       DB_USER: root
+#       DB_PASSWORD: My2ndStrongRootPassword!
+#       DB_NAME: crud_app
+#       JWT_SECRET: devopsShackSuperSecretKey
+#       RESET_ADMIN_PASS: 'true'
+#     depends_on:
+#       mysql:
+#         condition: service_healthy
+#     ports:
+#       - "4000:4000"
+
+#   frontend:
+#     image: princewillopah/frontend:latest
+#     container_name: frontend-react
+#     restart: always
+#     networks:
+#       - mynetwork
+#     ports:
+#       - "3000:80"
+#     depends_on:
+#       - backend
+
+# volumes:
+#   mysql-data:
+
+# networks:
+#   mynetwork:
+#     driver: bridge
+
+
+
+
+
+
+
+
+
+
+
+
+# services:
+#   mysql:
+#     image: mysql:8
+#     container_name: mysql
+#     restart: always
+#     networks:
+#       - mynetwork
+#     environment:
+#       MYSQL_ROOT_PASSWORD: My2ndStrongRootPassword!
+#       MYSQL_DATABASE: crud_app
+#     volumes:
+#       - mysql-data:/var/lib/mysql
+#       - ./mysql-init:/docker-entrypoint-initdb.d
+#     ports:
+#       - "3306:3306"
+#     healthcheck:
+#       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pMy2ndStrongRootPassword!"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 10
+
+#   backend:
+#     image: princewillopah/backend:latest
+#     container_name: backend-api
+#     restart: always
+#     networks:
+#       - mynetwork
+#     environment:
+#       DB_HOST: mysql
+#       DB_USER: root
+#       DB_PASSWORD: My2ndStrongRootPassword!
+#       DB_NAME: crud_app
+#       JWT_SECRET: devopsShackSuperSecretKey
+#       RESET_ADMIN_PASS: 'true'
+#     depends_on:
+#       mysql:
+#         condition: service_healthy
+#     ports:
+#       - "4000:4000"
+
+#   frontend:
+#     image: princewillopah/frontend:latest
+#     container_name: frontend-react
+#     restart: always
+#     networks:
+#       - mynetwork
+#     ports:
+#       - "3000:80"
+#     depends_on:
+#       - backend
+
+# volumes:
+#   mysql-data:
+
+# networks:
+#   mynetwork:
+#     driver: bridge
+
 
 
 

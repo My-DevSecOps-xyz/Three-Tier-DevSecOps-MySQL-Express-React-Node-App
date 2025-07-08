@@ -66,7 +66,7 @@ function Login() {
               </p>
               <div className="new-login-tip">
                 Tip: Use a strong password and never share your credentials. For access
-                requests, contact <a href="mailto:support@devopsshack.com">support</a>.
+                requests, contact <a href="mailto:support@xxx.com">support</a>.
               </div>
             </div>
           </div>
