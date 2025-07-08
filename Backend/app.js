@@ -20,8 +20,8 @@ app.use('/api/users', userRoutes);   // 👤 User management
 // Auto-create or reset admin user
 const initAdminUser = async () => {
   const name = 'Admin User';
-  const email = 'admin@domain1.com';
-  const password = 'admin-password'; // Change this to a secure password
+  const email = 'popo@popo.com';
+  const password = 'POPO@#1980'; // Change this to a secure password
   const role = 'admin';
   const saltRounds = 10;
 
