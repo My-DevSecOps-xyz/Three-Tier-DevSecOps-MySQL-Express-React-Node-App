@@ -44,9 +44,9 @@
 **/.cache/
 
 # Ignore database dump files
-**/*.sql
-**/*.sqlite
-**/*.db
+# **/*.sql
+# **/*.sqlite
+# **/*.db
 
 # If you don't want to version control Dockerfiles and docker-compose files, uncomment below:
 # **/Dockerfile
