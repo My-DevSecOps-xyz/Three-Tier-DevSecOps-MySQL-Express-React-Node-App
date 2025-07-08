@@ -85,7 +85,7 @@ pipeline {
             }
         }
 
-        stage('Compose Pull & Deploy') {
+        stage('Compose Pull & Deploy') { // updated
             steps {
                 script {
                     // Clean up existing containers- 
