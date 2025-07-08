@@ -9,6 +9,8 @@ console.log('MySQL Connection Config:', {
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME
+  // Add connection timeout and retry options
+
 });
 
 const db = mysql.createConnection({
